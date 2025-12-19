@@ -1,0 +1,101 @@
+pipeline {
+  stage 1: checkout --latest code
+  stage 2: some sort of check
+  stage 3: Build an Image
+  stage 4: Test
+    stage 4.1: test failed -?exit and send a error, jenkins failed
+    stage 4.2: test passed - now what?
+  stage 5: Publish the tested image
+  stage 6: Deployment
+  stage 7: Health check -- health of deployment
+}
+############ Notes #########
+integration testing: 
+  what are the systems involved?
+    - a web server
+    - databases
+    - storage
+  what can be controlled by code?
+    - JDBC URL  
+      - you are making a new commit
+      - can the test script in step 4 detect this?
+        - Yes
+        - if there is a typo, will the test pass?
+          - No
+          - fails step 4?
+            - Yes
+              - Do we need integration testing in JenkinsFile?
+                - No
+Data Quality, mismatches, data structure:
+  - why testing this in Jenkins is a bad idea?
+    - variable value
+    - over engineering 
+
+integer - 2
+string  - '2'
+
+what is the purpose of a JenkinsFile?
+   - Test constatnt in code is unaffected
+   - Continuous Integration
+    - coding standards
+    - Jenkins enforces these standards
+    - SonarScan, see if there are any vulnerabilities in the code
+    - Unit Testing
+    - Maintain histroy of each commit's build process
+
+
+Things to remember:
+
+- Jenkins is a layer between your new code and the sanity of the production application
+- where will one push the code?
+
+can I not use a framework for this to make my life easier?
+
+CI/CD framework, with Jenkins as a tool
+
+  - github
+    - how will code from github travel from github to the remote machine?
+      - webhook
+        - what triggers the webhook?
+          - a new commit pushes to the webhook
+            - how will the webhook know where to deploy?
+              -send the hostname
+                - what if I have 100s of machines?
+
+                - what if I want to scale up/down the system?
+                  - create a file with all the 100s of hosts
+                  - when deploying all the hosts receives the brand new code
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
