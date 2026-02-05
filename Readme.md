@@ -14,4 +14,4 @@ check for mlops_version 2
 12/20
 4540ce70c6664bf6b4d1744e0acdcfa3
 
---random text for test, git config --global user.name Aravind, this is a second sample
+--random text for test, this is text from Zack, this is a second sample
