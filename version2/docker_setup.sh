@@ -30,7 +30,7 @@ run_v1_setup() {
   fi
 }
 
-ensure_docker() {
+ensure_docker() { #run "sh docuker/check_init_script.sh" }
   if docker info >/dev/null 2>&1; then
     return
   fi
