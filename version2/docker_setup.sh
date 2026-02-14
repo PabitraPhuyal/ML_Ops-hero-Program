@@ -30,7 +30,7 @@ run_v1_setup() {
   fi
 }
 
-ensure_docker() { #run "sh docuker/check_init_script.sh" }
+ensure_docker() { 
   if docker info >/dev/null 2>&1; then
     return
   fi
@@ -46,6 +46,11 @@ ensure_docker() { #run "sh docuker/check_init_script.sh" }
   done
   log "Docker is ready."
 }
+
+
+# hey aravind, i did not understand the lines between 40-50, how do i understand this?
+# in wiindows - cntrl+/
+# in mac - cmd+/
 
 ensure_network() {
   if docker network inspect "${NETWORK_NAME}" >/dev/null 2>&1; then
