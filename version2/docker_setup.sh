@@ -50,7 +50,7 @@ ensure_docker() {
 
 # hey aravind, i did not understand the lines between 40-50, how do i understand this?
 # in wiindows - cntrl+/
-# in mac - cmd+/
+# in mac - cmd+/ 
 
 ensure_network() {
   if docker network inspect "${NETWORK_NAME}" >/dev/null 2>&1; then
