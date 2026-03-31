@@ -28,3 +28,11 @@ mcp->repo->infra
     PR is also raised by the LLM
 
 you have to make a call to an LLM, how to make it?
+
+
+semantics in programming
+
+select * from table_name where col <100
+
+landscape, what systems do we have?
+    - 
