@@ -6,7 +6,7 @@ pipeline {
     IMAGE_REPO = "${env.IMAGE_REPO ?: 'ghcr.io/aravindsatyan/data-cleaner'}"
     IMAGE_TAG = "${env.BUILD_NUMBER}"
     DOCKER_BUILDKIT = "1"
-    KUBE_CONFIG_CRED = "${env.KUBE_CONFIG_CRED ?: ''}"
+    KUBE_CONFIG_CRED = "${env.KUBE_CONFIG_CRED ?: ''}"=
   }
 
   stages {
