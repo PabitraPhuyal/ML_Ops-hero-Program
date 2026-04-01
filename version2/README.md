@@ -167,7 +167,7 @@ ngrok http 8080
 - If ports are in use, change the -p host:container mappings.
 - Use docker logs <container> to inspect container output.
 
---sample text for QA
+--sample text for QA 
 sample 2
 --added a random comment to test jenkins
 --adding a second commit
