@@ -146,7 +146,7 @@ docker restart jenkins
 # get the initial admin password (copy the output to finish setup in the web UI)
 docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 
-# install ngrok on Windows
+# install ngrok on Windows 
 # Option A: download from https://ngrok.com and run the installer
 # Option B (if you have Chocolatey): choco install ngrok -y
 # Once ngrok is available, add your authtoken and open a tunnel:
