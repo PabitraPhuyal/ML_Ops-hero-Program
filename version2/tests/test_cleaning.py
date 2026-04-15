@@ -9,3 +9,10 @@ def test_clean_df_basic():
     out = clean_df(df)
     assert "name" in out.columns
     assert out["name"].iloc[0] == "Alice"
+
+
+def test_clean_df_removes_blank_rows():
+    df = pd.DataFrame({" Name ": [" Alice ", "  "], "Age": [25, None]})
+    out = clean_df(df)
+    assert len(out) == 1
+    assert out.iloc[0]["name"] == "Alice"

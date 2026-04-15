@@ -8,9 +8,9 @@ def clean_df(df: pd.DataFrame) -> pd.DataFrame:
                   .str.replace(r"[^a-z0-9]+", "_", regex=True)
                   .str.strip("_")
     )
-    # Trim string columns
+    # Trim string columns and treat blank-only values as missing
     for c in df.select_dtypes(include=["object"]).columns:
-        df[c] = df[c].astype(str).str.strip()
+        df[c] = df[c].astype(str).str.strip().replace("", pd.NA)
     # Drop completely empty rows
     df = df.dropna(how="all")
     return df

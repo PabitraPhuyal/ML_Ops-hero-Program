@@ -1,4 +1,8 @@
-FROM python:3.11-slim
+FROM python:3.11-slim@sha256:a1a5797e590e4a1e1d5b2e5d8c7e6f5a4b3c2d1e0f1a2b3c4d5e6f7a8b9c0d
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1
 
 WORKDIR /app
 COPY app/requirements.txt .

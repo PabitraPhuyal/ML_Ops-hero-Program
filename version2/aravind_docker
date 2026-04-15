@@ -1,5 +1,5 @@
 # Alternate Docker build optimized for reproducible installs
-FROM python:3.11-slim AS base
+FROM python:3.11-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
