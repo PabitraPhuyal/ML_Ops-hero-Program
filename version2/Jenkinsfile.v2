@@ -1,7 +1,5 @@
 pipeline {
   agent any
-pipeline {
-  agent any
 
   triggers {
       githubPush()
@@ -25,20 +23,19 @@ pipeline {
     }
 
     stage('Unit Tests') {
-        steps {
-            dir('version2') {
-              sh '''
-                  python3 -m venv .venv
-                  . .venv/bin/activate
-                  pip install -r app/requirements.txt pytest
-                  PYTHONPATH=. pytest -q
-                  deactivate
-                  rm -rf .venv
-              '''
-            }
+      steps {
+        dir('version2') {
+          sh '''
+            python3 -m venv .venv
+            . .venv/bin/activate
+            pip install -r app/requirements.txt pytest
+            PYTHONPATH=. pytest -q
+            deactivate
+            rm -rf .venv
+          '''
         }
+      }
     }
-
 
     stage('Build Image') {
       steps {
@@ -70,7 +67,6 @@ pipeline {
           withCredentials([file(credentialsId: env.KUBE_CONFIG_CRED, variable: 'KUBECONFIG_FILE')]) {
             sh '''
               export KUBECONFIG="${KUBECONFIG_FILE}"
-              # Render image tag into manifests and apply
               mkdir -p build/k8s
               sed "s/{{IMAGE_TAG}}/${IMAGE_TAG}/g" k8s/deployment.yaml > build/k8s/deployment.yaml
 
