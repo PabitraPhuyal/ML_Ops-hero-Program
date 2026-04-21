@@ -35,5 +35,5 @@ semantics in programming
 select * from table_name where col <100
 
 landscape, what systems do we have?
-    - checking by pabi
+
     
