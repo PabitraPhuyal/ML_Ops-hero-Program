@@ -35,5 +35,5 @@ semantics in programming
 select * from table_name where col <100
 
 landscape, what systems do we have?
-hello let me check the process
+let me run again
     
