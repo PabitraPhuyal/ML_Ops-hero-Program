@@ -14,83 +14,10 @@ pipeline {
   }
 
   stages {
-
-    stage('init') {
-      steps { echo "Running pipeline from Jenkinsfile: ${env.JENKINSFILE_NAME}" }
-    }
-
-    stage('Checkout') {
-      steps { checkout scm }
-    }
-
-    stage('Unit Tests') {
-      steps {
-        dir('version2') {
-          bat '''
-            python -m venv .venv
-            call .venv\\Scripts\\activate
-            pip install -r app\\requirements.txt pytest
-            set PYTHONPATH=.
-            pytest -q
-            call .venv\\Scripts\\deactivate
-            rmdir /s /q .venv
-          '''
-        }
-      }
-    }
-
-    stage('Build Image') {
-      steps {
-        dir('version2') {
-          bat """
-            docker build -t ${IMAGE_REPO}:${IMAGE_TAG} .
-          """
-        }
-      }
-    }
-
-    stage('Login & Push') {
-      steps {
-        withCredentials([usernamePassword(credentialsId: 'REGISTRY_CREDS', usernameVariable: 'USER', passwordVariable: 'TOKEN')]) {
-          bat """
-            echo %TOKEN% | docker login ${REGISTRY} -u %USER% --password-stdin
-            docker push ${IMAGE_REPO}:${IMAGE_TAG}
-          """
-        }
-      }
-    }
-
-    stage('Deploy to K8s') {
-      when {
-        expression { env.KUBE_CONFIG_CRED?.trim() }
-      }
-      steps {
-        dir('version2') {
-          withCredentials([file(credentialsId: env.KUBE_CONFIG_CRED, variable: 'KUBECONFIG_FILE')]) {
-            bat """
-              set KUBECONFIG=%KUBECONFIG_FILE%
-              if not exist build\\k8s mkdir build\\k8s
-
-              powershell -Command "(Get-Content k8s/deployment.yaml).Replace('{{IMAGE_TAG}}','${IMAGE_TAG}') | Set-Content build/k8s/deployment.yaml"
-
-              kubectl apply -f k8s/namespace.yaml
-              kubectl -n %KUBE_NAMESPACE% apply -f build/k8s/deployment.yaml
-              kubectl -n %KUBE_NAMESPACE% apply -f k8s/service.yaml
-
-              kubectl -n %KUBE_NAMESPACE% rollout status deploy/data-cleaner --timeout=120s
-            """
-          }
-        }
-      }
-    }
+      ...
   }
 
   post {
-    success {
-      echo "Deployed ${IMAGE_REPO}:${IMAGE_TAG}"
-    }
-    failure {
-      echo "Pipeline failed."
-    }
+      ...
   }
 }
