@@ -1,2 +1,2 @@
 This text file was created on March 30, 2026 at the user's request.
-hello need to check one more time
+after python reintallation fixing code from apple to window version
