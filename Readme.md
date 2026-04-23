@@ -1,4 +1,4 @@
-how to use WSL and setup Linux?-- by pabi 
+how to use WSL and setup Linux?
 
 https://learn.microsoft.com/en-us/windows/wsl/install
 
